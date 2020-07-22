@@ -1,0 +1,51 @@
+{
+  "name": "hacker-news-clone",
+  "version": "0.1.0",
+  "description": "this is a hacker-news-clone made using React/SSR for fun.",
+  "private": true,
+  "author": "therohitkhanna@live.com",
+  "license": "MIT",
+  "keywords": [
+    "hacker-news-clone",
+    "reactjs",
+    "ssr"
+  ],
+  "dependencies": {
+    "axios": "^0.19.2",
+    "lodash": "^4.17.19",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
+    "eslint-plugin-react": "^7.18.0",
+    "husky": "^3.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "lint": "eslint src/**/*  --ignore-path .eslintignore"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
