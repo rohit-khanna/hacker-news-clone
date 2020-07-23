@@ -1,0 +1,35 @@
+@import "src/resources/css/_variables.scss";
+
+.newsMetadataContainer {
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+
+  .title {
+    font-weight: normal;
+    color: #000;
+    text-transform: none;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    text-decoration: none !important;
+  }
+  .metaData {
+    margin-left: 0.25rem;
+    font-size: 0.8rem;
+
+    .author {
+      font-weight: 600;
+      color: #6b6969;
+      text-transform: none;
+      font-size: 0.7rem;
+      letter-spacing: 0px;
+      text-decoration: none;
+    }
+  }
+  .hideButton {
+    color: #000;
+    font-weight: normal;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+}

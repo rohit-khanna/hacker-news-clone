@@ -1,0 +1,19 @@
+@import "src/resources/css/_variables.scss";
+
+#mainDataGrid {
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+  thead {
+    background-color: $primaryColor;
+    tr {
+      background-color: $primaryColor;
+
+      th {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  tbody {
+  }
+}
