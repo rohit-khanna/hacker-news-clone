@@ -12,9 +12,8 @@ export default function NewsMetadata({
 }) {
   return (
     <div className="newsMetadataContainer">
-      <div>
-        <LinkButton className="title" text={title} title="open post" />
-      </div>
+      <LinkButton className="title" text={title} title="open post" />
+
       <div className="metaData">
         <UrlLabel urlString={url} />
         <span className="author cursor-pointer">

@@ -2,7 +2,9 @@
 
 #mainDataGrid {
   border-collapse: separate;
-  border-spacing: 0 0.5rem;
+  border-spacing: 0 0rem;
+  font-size: 0.8rem;
+
   thead {
     background-color: $primaryColor;
     tr {
@@ -10,10 +12,9 @@
 
       th {
         padding: 0.5rem 0.25rem;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        color: white;
       }
     }
-  }
-  tbody {
   }
 }

@@ -9,25 +9,34 @@ export default function DataGrid({ data }) {
     <table cellPadding="0" cellSpacing="0" id="mainDataGrid">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Comments</th>
-          <th>Vote Count</th>
-          <th>Upvote</th>
-          <th>News Details</th>
+          <th className="col-1">#</th>
+          <th className="col-2">Comments</th>
+          <th className="col-2">Vote Count</th>
+          <th className="col-1">Upvote</th>
+          <th className="col-12">News Details</th>
         </tr>
       </thead>
       <tbody>
-        {map(data.hits, ({ title, url, author, objectID, created_at }, idx) => (
-          <DataRow
-            sNo={idx}
-            key={objectID}
-            title={title}
-            url={url}
-            author={author}
-            id={objectID}
-            createdDate={created_at}
-          />
-        ))}
+        {map(
+          data.hits,
+          (
+            { title, url, author, objectID, created_at, num_comments, points },
+            idx
+          ) => (
+            <DataRow
+              sNo={idx}
+              key={objectID}
+              title={title}
+              url={url}
+              author={author}
+              id={objectID}
+              createdDate={created_at}
+              commentsCount={num_comments}
+              voteCount={points}
+              isOddRow={idx % 2 === 1}
+            />
+          )
+        )}
       </tbody>
       <tfoot>
         <tr>
