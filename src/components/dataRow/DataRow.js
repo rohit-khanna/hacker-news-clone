@@ -1,8 +1,15 @@
 import React from "react";
 import "./DataRow.scss";
 import NewsMetadata from "../newsMetadata/NewsMetadata";
-import moment from "moment";
-import { FaSortUp } from "react-icons/fa";
+import ToggleUpvoteButton from "../common/toggleUpvoteButton/ToggleUpvoteButton";
+import {
+  FaRegComments as FaComment,
+  FaHashtag,
+  FaArrowUp,
+} from "react-icons/fa";
+import { AiFillEyeInvisible } from "react-icons/ai";
+import LinkButton from "../common/linkButton";
+import IconWithText from "../common/iconWithText/IconWithText";
 
 export default function DataRow({
   sNo,
@@ -18,7 +25,7 @@ export default function DataRow({
   return (
     <tr id={id} className={`row ${isOddRow ? "odd" : "even"}`}>
       <td className="col-1">{sNo + 1}</td>
-      <td className="col-2">{commentsCount}</td>
+      <td className="col-2 comment">{commentsCount}</td>
       <td
         className={` col-2 ${
           voteCount > 50 && voteCount < 100
@@ -31,14 +38,44 @@ export default function DataRow({
         {voteCount}
       </td>
       <td className="col-1">
-        <FaSortUp title="upvote" size="1.25em" className="upVoteIcon" />
+        <ToggleUpvoteButton
+          isSelected={sNo % 3 === 0}
+          onChange={() => {
+            alert("upvote");
+          }}
+        />
       </td>
       <td className="col-12">
         <NewsMetadata
           title={title}
           author={author}
-          createdDate={moment(createdDate)}
+          createdDate={createdDate}
           url={url}
+        />
+      </td>
+      <td className="col-8 mobileActionArea">
+        {" "}
+        <IconWithText
+          iconComponent={<FaHashtag />}
+          iconTooltip="ID"
+          text={sNo}
+          className="id"
+        />
+        <IconWithText
+          iconComponent={<FaComment />}
+          iconTooltip="Comments Count"
+          text={commentsCount}
+        />
+        <IconWithText
+          iconComponent={<AiFillEyeInvisible />}
+          iconTooltip="Hide"
+          text=""
+        />
+        <ToggleUpvoteButton
+          isSelected={sNo % 3 === 0}
+          onChange={() => {
+            alert("upvote");
+          }}
         />
       </td>
     </tr>

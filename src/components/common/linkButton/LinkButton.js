@@ -2,7 +2,7 @@ import React from "react";
 import "./LinkButton.scss";
 
 export default function LinkButton({
-  text = "button",
+  children = "button",
   title,
   className,
   ...props
@@ -11,9 +11,9 @@ export default function LinkButton({
     <button
       {...props}
       className={`linkButton cursor-pointer ${className ? className : ""}`}
-      title={title || text}
+      title={title}
     >
-      {text}
+      {children}
     </button>
   );
 }

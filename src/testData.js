@@ -12,6 +12,7 @@ const data = {
       num_comments: 15,
       story_id: null,
       story_title: null,
+      id: 1,
       story_url: null,
       parent_id: null,
       created_at_i: 1595429067,
@@ -40,6 +41,8 @@ const data = {
       points: 39,
       story_text: null,
       comment_text: null,
+      id: 2,
+
       num_comments: 17,
       story_id: null,
       story_title: null,
@@ -73,6 +76,8 @@ const data = {
       story_text: null,
       comment_text: null,
       num_comments: 171,
+      id: 3,
+
       story_id: null,
       story_title: null,
       story_url: null,
@@ -104,6 +109,8 @@ const data = {
       points: 294,
       story_text: null,
       comment_text: null,
+      id: 4,
+
       num_comments: 157,
       story_id: null,
       story_title: null,
@@ -135,6 +142,8 @@ const data = {
       author: "James0x57",
       points: 288,
       story_text: null,
+      id: 5,
+
       comment_text: null,
       num_comments: 67,
       story_id: null,
@@ -173,6 +182,8 @@ const data = {
       points: 230,
       story_text: null,
       comment_text: null,
+      id: 6,
+
       num_comments: 86,
       story_id: null,
       story_title: null,
@@ -204,6 +215,8 @@ const data = {
       author: "coloneltcb",
       points: 199,
       story_text: null,
+      id: 7,
+
       comment_text: null,
       num_comments: 45,
       story_id: null,
@@ -242,6 +255,8 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
+      id: 8,
+
       parent_id: null,
       created_at_i: 1595441458,
       _tags: ["story", "author_mmphosis", "story_23919869", "front_page"],
@@ -272,6 +287,8 @@ const data = {
       num_comments: 126,
       story_id: null,
       story_title: null,
+      id: 9,
+
       story_url: null,
       parent_id: null,
       created_at_i: 1595359411,
@@ -298,6 +315,8 @@ const data = {
       author: "tga",
       points: 181,
       story_text: null,
+      id: 10,
+
       comment_text: null,
       num_comments: 52,
       story_id: null,
@@ -333,6 +352,8 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
+      id: 11,
+
       parent_id: null,
       created_at_i: 1595451370,
       _tags: [
@@ -366,6 +387,8 @@ const data = {
       story_text: null,
       comment_text: null,
       num_comments: 20,
+      id: 1992,
+
       story_id: null,
       story_title: null,
       story_url: null,
@@ -399,6 +422,8 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
+      id: 162,
+
       parent_id: null,
       created_at_i: 1595462411,
       _tags: ["story", "author__venkatasg", "story_23922846", "front_page"],
@@ -429,6 +454,8 @@ const data = {
       num_comments: 42,
       story_id: null,
       story_title: null,
+      id: 122,
+
       story_url: null,
       parent_id: null,
       created_at_i: 1595282570,
@@ -463,6 +490,8 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
+      id: 2,
+
       parent_id: null,
       created_at_i: 1595431254,
       _tags: ["story", "author_podoman", "story_23917956", "front_page"],
@@ -496,6 +525,8 @@ const data = {
       story_title: null,
       story_url: null,
       parent_id: null,
+      id: 1124,
+
       created_at_i: 1595449730,
       _tags: [
         "story",
@@ -530,6 +561,8 @@ const data = {
       num_comments: 54,
       story_id: null,
       story_title: null,
+      id: 113,
+
       story_url: null,
       parent_id: null,
       created_at_i: 1595468580,
@@ -561,6 +594,8 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
+      id: 1120,
+
       parent_id: null,
       created_at_i: 1595453224,
       _tags: ["story", "author_leephillips", "story_23921799", "front_page"],
@@ -587,6 +622,8 @@ const data = {
       points: 83,
       story_text: null,
       comment_text: null,
+      id: 66,
+
       num_comments: 31,
       story_id: null,
       story_title: null,
@@ -618,6 +655,8 @@ const data = {
       story_text: null,
       comment_text: null,
       num_comments: 27,
+      id: 92,
+
       story_id: null,
       story_title: null,
       story_url: null,

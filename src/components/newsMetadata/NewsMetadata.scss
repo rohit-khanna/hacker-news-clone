@@ -28,11 +28,45 @@
       letter-spacing: 0px;
       text-decoration: none;
     }
+    .hideButtonContainer {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 0.7rem;
+      color: rgb(78, 77, 77);
+      .hideButton {
+        color: rgb(78, 77, 77);
+        font-weight: normal;
+        font-size: 0.7rem;
+        letter-spacing: 0.2px;
+      }
+    }
   }
-  .hideButton {
-    color: #000;
-    font-weight: normal;
-    font-size: 0.7rem;
-    letter-spacing: 0.5px;
+}
+@media only screen and (max-width: 500px) {
+  .newsMetadataContainer {
+    .title {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    /* For mobile phones: */
+    .metaData {
+      font-size: 0.7rem;
+      .hideButtonContainer {
+        display: none;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .newsMetadataContainer {
+    .title {
+      width: 100%;
+    }
+    /* For mobile phones: */
+    .metaData {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
   }
 }

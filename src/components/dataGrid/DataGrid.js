@@ -13,7 +13,12 @@ export default function DataGrid({ data }) {
           <th className="col-2">Comments</th>
           <th className="col-2">Vote Count</th>
           <th className="col-1">Upvote</th>
-          <th className="col-12">News Details</th>
+          <th colSpan="2" className="col-12">
+            News Details
+          </th>
+          <th colSpan="5" className="mobilHeader">
+            News Details
+          </th>
         </tr>
       </thead>
       <tbody>

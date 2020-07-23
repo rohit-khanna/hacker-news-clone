@@ -4,6 +4,7 @@
   border-collapse: separate;
   border-spacing: 0 0rem;
   font-size: 0.8rem;
+  width: 100%;
 
   thead {
     background-color: $primaryColor;
@@ -14,6 +15,25 @@
         padding: 0.5rem 0.25rem;
         font-size: 0.75rem;
         color: white;
+        &.mobilHeader {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    border-collapse: separate;
+    border-spacing: 0 0.5em;
+    /* For mobile phones: */
+    th {
+      &.col-1,
+      &.col-2,
+      &.col-12 {
+        display: none;
+      }
+      &.mobilHeader {
+        display: block !important;
       }
     }
   }

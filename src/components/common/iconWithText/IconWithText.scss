@@ -1,0 +1,16 @@
+@import "src/resources/css/variables.scss";
+.iconWithTextContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+  align-items: center;
+  cursor: pointer;
+  color: grey;
+
+  span {
+    color: $primaryColor;
+    font-size: 0.6rem;
+    margin: 0 0 0 0.1rem;
+    font-weight: bold;
+  }
+}

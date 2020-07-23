@@ -16,6 +16,12 @@ a {
 .d-flex {
   display: flex !important;
 }
+.d-in-flex {
+  display: inline-flex !important;
+}
+.d-none {
+  display: none !important;
+}
 .cursor-pointer {
   cursor: pointer !important;
 }
@@ -24,6 +30,12 @@ a {
 }
 .text-align-left {
   text-align: left !important;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.align-content-center {
+  align-items: center;
 }
 
 .font-size-small {
@@ -35,6 +47,9 @@ a {
 
 .ml-0 {
   margin-left: 0rem;
+}
+.ml-0-5 {
+  margin-left: 0.1rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
