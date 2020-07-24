@@ -2,13 +2,8 @@ import React from "react";
 import "./DataRow.scss";
 import NewsMetadata from "../newsMetadata/NewsMetadata";
 import ToggleUpvoteButton from "../common/toggleUpvoteButton/ToggleUpvoteButton";
-import {
-  FaRegComments as FaComment,
-  FaHashtag,
-  FaArrowUp,
-} from "react-icons/fa";
+import { FaRegComments as FaComment, FaHashtag } from "react-icons/fa";
 import { AiFillEyeInvisible } from "react-icons/ai";
-import LinkButton from "../common/linkButton";
 import IconWithText from "../common/iconWithText/IconWithText";
 
 export default function DataRow({

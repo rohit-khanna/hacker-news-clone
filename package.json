@@ -30,14 +30,21 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
     "eslint-plugin-react": "^7.18.0",
-    "husky": "^3.1.0",
+    "husky": "^4.2.5",
     "react-test-renderer": "^16.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "test:CI": "react-scripts test --watchAll",
+    "test:coverage": "react-scripts test --watchAll --coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test:CI"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"

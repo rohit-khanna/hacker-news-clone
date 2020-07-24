@@ -11,14 +11,17 @@ export default function LineChart({ data }) {
     ],
     [data]
   );
-  const axes = React.useMemo(() => [
-    {
-      primary: true,
-      type: "ordinal",
-      position: "bottom",
-    },
-    { type: "linear", position: "left" },
-  ]);
+  const axes = React.useMemo(
+    () => [
+      {
+        primary: true,
+        type: "ordinal",
+        position: "bottom",
+      },
+      { type: "linear", position: "left" },
+    ],
+    []
+  );
 
   return (
     <div
