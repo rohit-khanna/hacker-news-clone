@@ -1,5 +1,5 @@
 import moment from "moment";
-import { isEmpty, map, orderBy } from "lodash";
+import { isEmpty, map, orderBy, each } from "lodash";
 
 /**
  * get hostname from the Url String
@@ -50,4 +50,20 @@ export const convertNewsDataToChartCoordinates = (newsData) => {
     x: id,
     y: points,
   }));
+};
+
+export const normalizeNewsData = (responseData) => {
+  const result = { data: {}, page: {} };
+  if (isEmpty(responseData)) return result;
+
+  const { hits, page, nbPages, hitsPerPage } = responseData;
+
+  each(hits, ({ objectID, ...restKey }) => {
+    result.data[objectID] = result.data[objectID] || {};
+    result.data[objectID] = { objectID, ...restKey };
+  });
+
+  result.page = { currentPage: page, totalPages: nbPages, hitsPerPage };
+
+  return result;
 };
