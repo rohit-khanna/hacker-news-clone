@@ -30,7 +30,8 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
     "eslint-plugin-react": "^7.18.0",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "serve": "^11.3.2"
   },
   "scripts": {
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
