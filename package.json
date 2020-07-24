@@ -33,12 +33,14 @@
     "react-test-renderer": "^16.13.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
     "test": "react-scripts test",
     "test:CI": "react-scripts test --watchAll",
-    "test:coverage": "react-scripts test --watchAll --coverage"
+    "test:coverage": "react-scripts test --watchAll --coverage",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "heroku-postbuild": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
