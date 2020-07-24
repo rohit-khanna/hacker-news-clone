@@ -35,6 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
     "test": "react-scripts test"
   },
