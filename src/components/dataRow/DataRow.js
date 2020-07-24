@@ -19,7 +19,7 @@ export default function DataRow({
 }) {
   return (
     <tr id={id} className={`row ${isOddRow ? "odd" : "even"}`}>
-      <td className="col-1">{sNo + 1}</td>
+      <td className="col-1">{sNo}</td>
       <td className="col-2 comment">{commentsCount}</td>
       <td
         className={` col-2 ${
@@ -34,7 +34,6 @@ export default function DataRow({
       </td>
       <td className="col-1">
         <ToggleUpvoteButton
-          isSelected={sNo % 3 === 0}
           onChange={() => {
             alert("upvote");
           }}

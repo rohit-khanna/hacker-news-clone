@@ -46,8 +46,8 @@ export const removeFromLocalStorage = (key) => {
 };
 
 export const convertNewsDataToChartCoordinates = (newsData) => {
-  return map(orderBy(newsData, "id"), ({ id, objectID, points }) => ({
-    x: id,
+  return map(orderBy(newsData, "sno"), ({ objectID, sno, points }) => ({
+    x: sno,
     y: points,
   }));
 };
@@ -57,10 +57,15 @@ export const normalizeNewsData = (responseData) => {
   if (isEmpty(responseData)) return result;
 
   const { hits, page, nbPages, hitsPerPage } = responseData;
+  const pageMultipler = page * 10;
 
-  each(hits, ({ objectID, ...restKey }) => {
+  each(hits, ({ objectID, ...restKey }, idx) => {
     result.data[objectID] = result.data[objectID] || {};
-    result.data[objectID] = { objectID, ...restKey };
+    result.data[objectID] = {
+      objectID,
+      sno: pageMultipler + (idx + 1),
+      ...restKey,
+    };
   });
 
   result.page = { currentPage: page, totalPages: nbPages, hitsPerPage };

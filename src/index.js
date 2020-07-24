@@ -1,6 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import AppContainer from "./AppContainer";
+import ConfigureStore from "./redux/configureStore";
+import { Provider as ReduxProvider } from "react-redux";
+import InitialState from "./redux/reducers/initialState";
+import "./config/config-axios";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const store = new ConfigureStore(InitialState);
+
+ReactDOM.render(
+  <ReduxProvider store={store}>
+    <AppContainer />
+  </ReduxProvider>,
+
+  document.getElementById("root")
+);

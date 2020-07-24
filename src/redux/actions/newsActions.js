@@ -13,11 +13,12 @@ import moment from "moment";
 import { normalizeNewsData } from "../../utils";
 
 //#region Action Creators
-export const fetchFrontPageNewsSuccess = (searchParams, data) => {
+export const fetchFrontPageNewsSuccess = (searchParams, data, page) => {
   return {
     type: FETCH_FRONT_PAGE_NEWS_SUCCESS,
     query: searchParams,
     data,
+    page,
   };
 };
 
@@ -61,8 +62,8 @@ const fetchNewsFromApi = (pageObj) => async (dispatch) => {
       endpoint,
       endpoint + searchQuery
     );
-    const normalizedRsult = normalizeNewsData(response.data);
-    dispatch(fetchFrontPageNewsSuccess(searchQuery, normalizedRsult));
+    const { data, page } = normalizeNewsData(response.data);
+    dispatch(fetchFrontPageNewsSuccess(searchQuery, data, page));
   } catch (error) {
     dispatch(fetchFrontPageNewsFailure(searchQuery, error.message));
   } finally {
@@ -98,9 +99,8 @@ const fetchHiddenNewsItems = () => async (dispatch) => {
  * @param {*} currentCount
  */
 const upVote = (newsItemId, currentCount) => async (dispatch) => {
-  const localNewsDetails = InternalBaseService.get(
-    CONFIG.LOCAL_STORAGE_KEYS.UPVOTES
-  );
+  const localNewsDetails =
+    InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.UPVOTES) || {};
   localNewsDetails[newsItemId].points = currentCount + 1;
   if (
     InternalBaseService.put(CONFIG.LOCAL_STORAGE_KEYS.UPVOTES, localNewsDetails)

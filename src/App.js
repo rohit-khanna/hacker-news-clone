@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DataGrid from "./components/dataGrid";
-import data from "./testData";
+//import data from "./testData";
 import "./App.scss";
 import LineChart from "./components/charts/lineChart";
 import { convertNewsDataToChartCoordinates } from "./utils";
 
-function App() {
+function App({ actions, newsData }) {
+  useEffect(() => {
+    actions.fetchNews({ nextPage: 0 });
+  }, [actions]);
+
   return (
     <main className="mainContainer">
-      <DataGrid data={data} />
+      <DataGrid data={newsData} />
       <hr />
-      <LineChart data={convertNewsDataToChartCoordinates(data.hits)} />
+      <LineChart data={convertNewsDataToChartCoordinates(newsData)} />
     </main>
   );
 }

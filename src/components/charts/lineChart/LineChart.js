@@ -17,6 +17,7 @@ export default function LineChart({ data }) {
         primary: true,
         type: "ordinal",
         position: "bottom",
+        //format: (tick) => `My Prefix ${tick}`,
       },
       { type: "linear", position: "left" },
     ],
@@ -26,8 +27,9 @@ export default function LineChart({ data }) {
   return (
     <div
       style={{
-        width: "100%",
-        height: "300px",
+        margin: "0 auto",
+        width: "98%",
+        height: "400px",
       }}
     >
       <Chart data={memoizedData} axes={axes} secondaryCursor />

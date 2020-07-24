@@ -1,6 +1,6 @@
 import React from "react";
 import "./DataGrid.scss";
-import { map } from "lodash";
+import { map, orderBy } from "lodash";
 import DataRow from "../dataRow";
 import Pagination from "../pagination";
 
@@ -23,13 +23,22 @@ export default function DataGrid({ data }) {
       </thead>
       <tbody>
         {map(
-          data.hits,
+          orderBy(data, "sno"),
           (
-            { title, url, author, objectID, created_at, num_comments, points },
+            {
+              title,
+              url,
+              author,
+              objectID,
+              created_at,
+              num_comments,
+              points,
+              sno,
+            },
             idx
           ) => (
             <DataRow
-              sNo={idx}
+              sNo={sno}
               key={objectID}
               title={title}
               url={url}

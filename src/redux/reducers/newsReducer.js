@@ -13,10 +13,11 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
   switch (action.type) {
     case FETCH_FRONT_PAGE_NEWS_SUCCESS: {
       const currentState = { ...state };
-      const { query, data } = action;
+      const { query, data, page } = action;
       currentState.error = "";
       currentState.data = data; // data is normalized Data with key as objID
-      currentState.query = query; // TODO: save Page Details in seperate Key
+      currentState.query = query;
+      currentState.page = page;
       return currentState;
     }
     case FETCH_FRONT_PAGE_NEWS_FAILURE: {
@@ -25,6 +26,8 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
       currentState.error = error;
       currentState.data = {};
       currentState.query = query;
+      currentState.page = {};
+
       return currentState;
     }
     case FETCH_LOCAL_NEWS_SUCCESS: {
@@ -47,7 +50,7 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
     }
 
     default:
-      break;
+      return state;
   }
 };
 
