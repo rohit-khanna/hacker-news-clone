@@ -4,7 +4,15 @@ import { map, orderBy } from "lodash";
 import DataRow from "../dataRow";
 import Pagination from "../pagination";
 
-export default function DataGrid({ data }) {
+export default function DataGrid({ data, actions: { upvote, hideNewsItem } }) {
+  const handleUpVote = (objectId, currentCount) => {
+    upvote(objectId, currentCount);
+  };
+
+  const handleHideNews = (objectId) => {
+    hideNewsItem(objectId);
+  };
+
   return (
     <table cellPadding="0" cellSpacing="0" id="mainDataGrid">
       <thead>
@@ -48,6 +56,8 @@ export default function DataGrid({ data }) {
               commentsCount={num_comments}
               voteCount={points}
               isOddRow={idx % 2 === 1}
+              onUpVote={handleUpVote}
+              OnHide={handleHideNews}
             />
           )
         )}

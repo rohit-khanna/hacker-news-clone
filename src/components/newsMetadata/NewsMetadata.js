@@ -9,6 +9,7 @@ export default function NewsMetadata({
   author,
   createdDate,
   title,
+  OnHide,
   hideButtonVisible = true,
 }) {
   return (
@@ -31,7 +32,7 @@ export default function NewsMetadata({
         </span>
         <div className="hideButtonContainer">
           [
-          <LinkButton className="hideButton" title="hide">
+          <LinkButton className="hideButton" title="hide" onClick={OnHide}>
             hide
           </LinkButton>
           ]

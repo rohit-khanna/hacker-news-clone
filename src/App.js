@@ -12,7 +12,7 @@ function App({ actions, newsData }) {
 
   return (
     <main className="mainContainer">
-      <DataGrid data={newsData} />
+      <DataGrid data={newsData} actions={actions} />
       <hr />
       <LineChart data={convertNewsDataToChartCoordinates(newsData)} />
     </main>

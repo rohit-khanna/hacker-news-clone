@@ -11,6 +11,11 @@ function mapDispatchToProps(dispatch) {
         actions.newsSearchActions.fetchNewsFromApi,
         dispatch
       ),
+      upvote: bindActionCreators(actions.newsSearchActions.upVote, dispatch),
+      hideNewsItem: bindActionCreators(
+        actions.newsSearchActions.hideNewsItem,
+        dispatch
+      ),
     },
   };
 }

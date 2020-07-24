@@ -16,7 +16,13 @@ export default function DataRow({
   commentsCount,
   voteCount,
   isOddRow,
+  onUpVote,
+  OnHide,
 }) {
+  const handleNewsHide = () => {
+    OnHide(id);
+  };
+
   return (
     <tr id={id} className={`row ${isOddRow ? "odd" : "even"}`}>
       <td className="col-1">{sNo}</td>
@@ -35,7 +41,7 @@ export default function DataRow({
       <td className="col-1">
         <ToggleUpvoteButton
           onChange={() => {
-            alert("upvote");
+            onUpVote(id, voteCount);
           }}
         />
       </td>
@@ -45,6 +51,7 @@ export default function DataRow({
           author={author}
           createdDate={createdDate}
           url={url}
+          OnHide={handleNewsHide}
         />
       </td>
       <td className="col-8 mobileActionArea">
