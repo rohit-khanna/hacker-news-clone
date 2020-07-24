@@ -1,0 +1,9 @@
+# specify language to be used in build, its version and script to be run.
+language: node_js
+
+node_js:
+  - "10"
+
+script:
+  - yarn test
+  - yarn build
