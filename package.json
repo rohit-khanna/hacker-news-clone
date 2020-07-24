@@ -28,13 +28,15 @@
     "babel-polyfill": "^6.26.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.3",
+    "enzyme-to-json": "^3.5.0",
     "eslint-plugin-react": "^7.18.0",
-    "husky": "^3.1.0"
+    "husky": "^3.1.0",
+    "react-test-renderer": "^16.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "eslint src/**/*  --ignore-path .eslintignore"
+    "lint": "eslint src/**/*  --ignore-path .eslintignore",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": "react-app"

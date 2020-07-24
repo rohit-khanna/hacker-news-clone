@@ -5,6 +5,7 @@ export default function LinkButton({
   children = "button",
   title,
   className,
+  onClick,
   ...props
 }) {
   return (
@@ -12,6 +13,7 @@ export default function LinkButton({
       {...props}
       className={`linkButton cursor-pointer ${className ? className : ""}`}
       title={title}
+      onClick={onClick}
     >
       {children}
     </button>

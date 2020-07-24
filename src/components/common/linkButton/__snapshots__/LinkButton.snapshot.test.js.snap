@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LinkButton/> should match the snapshot 1`] = `
+<button
+  className="linkButton cursor-pointer someClass"
+  onClick={[Function]}
+  title="Some title"
+>
+  some text
+</button>
+`;
