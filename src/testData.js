@@ -12,7 +12,7 @@ const data = {
       num_comments: 15,
       story_id: null,
       story_title: null,
-      id: 1,
+      sno: 1,
       story_url: null,
       parent_id: null,
       created_at_i: 1595429067,
@@ -41,7 +41,7 @@ const data = {
       points: 39,
       story_text: null,
       comment_text: null,
-      id: 2,
+      sno: 2,
 
       num_comments: 17,
       story_id: null,
@@ -76,7 +76,7 @@ const data = {
       story_text: null,
       comment_text: null,
       num_comments: 171,
-      id: 3,
+      sno: 3,
 
       story_id: null,
       story_title: null,
@@ -109,7 +109,7 @@ const data = {
       points: 294,
       story_text: null,
       comment_text: null,
-      id: 4,
+      sno: 4,
 
       num_comments: 157,
       story_id: null,
@@ -142,7 +142,7 @@ const data = {
       author: "James0x57",
       points: 288,
       story_text: null,
-      id: 5,
+      sno: 5,
 
       comment_text: null,
       num_comments: 67,
@@ -182,7 +182,7 @@ const data = {
       points: 230,
       story_text: null,
       comment_text: null,
-      id: 6,
+      sno: 6,
 
       num_comments: 86,
       story_id: null,
@@ -215,7 +215,7 @@ const data = {
       author: "coloneltcb",
       points: 199,
       story_text: null,
-      id: 7,
+      sno: 7,
 
       comment_text: null,
       num_comments: 45,
@@ -255,7 +255,7 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
-      id: 8,
+      sno: 8,
 
       parent_id: null,
       created_at_i: 1595441458,
@@ -287,7 +287,7 @@ const data = {
       num_comments: 126,
       story_id: null,
       story_title: null,
-      id: 9,
+      sno: 9,
 
       story_url: null,
       parent_id: null,
@@ -315,7 +315,7 @@ const data = {
       author: "tga",
       points: 181,
       story_text: null,
-      id: 10,
+      sno: 10,
 
       comment_text: null,
       num_comments: 52,
@@ -352,7 +352,7 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
-      id: 11,
+      sno: 11,
 
       parent_id: null,
       created_at_i: 1595451370,
@@ -387,7 +387,7 @@ const data = {
       story_text: null,
       comment_text: null,
       num_comments: 20,
-      id: 1992,
+      sno: 1992,
 
       story_id: null,
       story_title: null,
@@ -422,7 +422,7 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
-      id: 162,
+      sno: 162,
 
       parent_id: null,
       created_at_i: 1595462411,
@@ -454,7 +454,7 @@ const data = {
       num_comments: 42,
       story_id: null,
       story_title: null,
-      id: 122,
+      sno: 122,
 
       story_url: null,
       parent_id: null,
@@ -490,7 +490,7 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
-      id: 2,
+      sno: 2,
 
       parent_id: null,
       created_at_i: 1595431254,
@@ -525,7 +525,7 @@ const data = {
       story_title: null,
       story_url: null,
       parent_id: null,
-      id: 1124,
+      sno: 1124,
 
       created_at_i: 1595449730,
       _tags: [
@@ -561,7 +561,7 @@ const data = {
       num_comments: 54,
       story_id: null,
       story_title: null,
-      id: 113,
+      sno: 113,
 
       story_url: null,
       parent_id: null,
@@ -594,7 +594,7 @@ const data = {
       story_id: null,
       story_title: null,
       story_url: null,
-      id: 1120,
+      sno: 1120,
 
       parent_id: null,
       created_at_i: 1595453224,
@@ -622,7 +622,7 @@ const data = {
       points: 83,
       story_text: null,
       comment_text: null,
-      id: 66,
+      sno: 66,
 
       num_comments: 31,
       story_id: null,
@@ -649,13 +649,13 @@ const data = {
     {
       created_at: "2020-07-23T03:06:06.000Z",
       title: "What is GPT-3? written in layman's terms",
-      url: "https://tinkeredthinking.com/index.php?id=841",
+      url: "https://tinkeredthinking.com/index.php?sno=841",
       author: "skylarker",
       points: 76,
       story_text: null,
       comment_text: null,
       num_comments: 27,
-      id: 92,
+      sno: 92,
 
       story_id: null,
       story_title: null,
@@ -671,7 +671,7 @@ const data = {
           matchedWords: [],
         },
         url: {
-          value: "https://tinkeredthinking.com/index.php?id=841",
+          value: "https://tinkeredthinking.com/index.php?sno=841",
           matchLevel: "none",
           matchedWords: [],
         },
