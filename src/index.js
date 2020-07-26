@@ -13,10 +13,10 @@ const serverState = window.__PRELOADED_STATE__;
 const store = new ConfigureStore(serverState || InitialState);
 
 ReactDOM.hydrate(
-  <BrowserRouter>
-    <ReduxProvider store={store}>
-      <App />
-    </ReduxProvider>
-  </BrowserRouter>,
+  // <BrowserRouter>
+  <ReduxProvider store={store}>
+    <App val="1" />,
+  </ReduxProvider>,
+  // </BrowserRouter>,
   document.getElementById("root")
 );

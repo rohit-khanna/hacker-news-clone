@@ -52,9 +52,9 @@
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
     "test": "react-scripts test",
     "test:CI": "react-scripts test --watchAll",
-    "dev": " npm-run-all --parallel \"dev:*\" ",
+    "dev": " npm-run-all  \"dev:*\" ",
     "dev:start-client": "react-scripts build",
-    "dev:build-server": " node src/server/bootstrap.js --watch",
+    "dev:build-server": " nodemon --watch src/server --exec node src//server//bootstrap.js",
     "start": "serve -s build",
     "build": "react-scripts build",
     "heroku-postbuild": "yarn build"
