@@ -7,22 +7,17 @@ import ConfigureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "react-redux";
 import InitialState from "./redux/reducers/initialState";
 import "./config/config-axios";
-//import { BrowserRouter } from "react-router-dom";
-import Loadable from "react-loadable";
-
-const AppComponent = Loadable({
-  loader: () => import("./App"),
-  loading: () => <div>loading...</div>,
-});
+import { BrowserRouter } from "react-router-dom";
+import Routes from "./Routes";
 
 const serverState = window.__PRELOADED_STATE__;
 const store = new ConfigureStore(serverState || InitialState);
 
 ReactDOM.hydrate(
-  // <BrowserRouter>
   <ReduxProvider store={store}>
-    <AppComponent val="1" />,
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   </ReduxProvider>,
-  // </BrowserRouter>,
   document.getElementById("root")
 );

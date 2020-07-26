@@ -7,7 +7,7 @@ require("@babel/register")({
       "transform-assets",
       {
         extensions: ["css", "svg"],
-        name: "static/[name].[hash:8].[ext]",
+        name: "static/css/[name].[hash:8].chunk.[ext]",
       },
     ],
   ],
