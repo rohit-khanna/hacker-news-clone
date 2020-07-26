@@ -8,7 +8,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       fetchNews: bindActionCreators(
-        actions.newsSearchActions.fetchNewsFromApi,
+        actions.newsBusinessActions.fetchNews,
         dispatch
       ),
       upvote: bindActionCreators(actions.newsSearchActions.upVote, dispatch),
@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    newsData: selectors.newsSelectors.getResult(state),
+    newsData: selectors.newsSelectors.getResult(state).data,
   };
 }
 

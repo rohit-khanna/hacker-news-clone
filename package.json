@@ -15,6 +15,7 @@
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "@babel/register": "^7.7.7",
+    "@babel/runtime": "^7.10.5",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
     "babel-plugin-transform-assets": "^1.0.2",
@@ -31,6 +32,7 @@
     "react-icons": "^3.10.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^7.2.0",
+    "react-router-config": "^5.1.1",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
@@ -38,6 +40,7 @@
     "webpack-dev-server": "3.10.3"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
@@ -51,11 +54,12 @@
     "webpack-node-externals": "1.7.2"
   },
   "scripts": {
+    "start:local": "react-scripts start",
     "lint": "eslint src/**/*  --ignore-path .eslintignore",
     "test": "react-scripts test",
     "test:CI": "react-scripts test --watchAll",
     "dev": " npm-run-all  \"dev:*\" ",
-    "dev:start-client": "react-scripts build",
+    "dev:build-client": "react-scripts build",
     "dev:build-server": " nodemon --watch src/server --exec node src//server//bootstrap.js",
     "start": "node src//server//bootstrap.js",
     "build": "react-scripts build",

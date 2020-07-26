@@ -4,11 +4,11 @@ import {
   FETCH_LOCAL_NEWS_SUCCESS,
   FETCH_HIDDEN_ITEMS_SUCCESS,
 } from "./actionTypes";
-import { API_CALL_IDENTIFIERS } from "../constants";
+//import { API_CALL_IDENTIFIERS } from "../constants";
 import { ExternalBaseService, InternalBaseService } from "../../services";
 import CONFIG from "../../config/config";
-import { beginAPICall, endAPICall } from "./apiCallActions";
-import { isEmpty } from "lodash";
+//import { beginAPICall, endAPICall } from "./apiCallActions";
+import { isEmpty, each, keys } from "lodash";
 import moment from "moment";
 import { normalizeNewsData } from "../../utils";
 
@@ -47,50 +47,67 @@ export const fetchHiddenNewsItemsSuccess = (data) => {
 
 //#region thunk
 /**
- * THUNK: to fetch the Front Page News
+ * THUNK: to fetch the Front Page News: Client Side Calling
  * @param {*} pageObj page Object
  */
 const fetchNewsFromApi = (pageObj) => async (dispatch) => {
-  const apiIdentifier = API_CALL_IDENTIFIERS.FRONT_PAGE_NEWS_SEARCH;
-  const searchQuery = `&page=${pageObj.nextPage}`;
+  //const apiIdentifier = API_CALL_IDENTIFIERS.FRONT_PAGE_NEWS_SEARCH;
+  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.nextPage : 0}`;
   try {
-    dispatch(beginAPICall(apiIdentifier));
+    //  dispatch(beginAPICall(apiIdentifier));
 
     const endpoint = CONFIG.API_ENDPOINTS.FETCH_FRONT_PAGE_NEWS;
 
-    const response = await ExternalBaseService.get(
-      endpoint,
-      endpoint + searchQuery
-    );
+    const response = await ExternalBaseService.get(endpoint + searchQuery);
     const { data, page } = normalizeNewsData(response.data);
-    dispatch(fetchFrontPageNewsSuccess(searchQuery, data, page));
+    //dispatch(fetchFrontPageNewsSuccess(searchQuery, data, page));
+    return { data, page, searchQuery };
   } catch (error) {
     dispatch(fetchFrontPageNewsFailure(searchQuery, error.message));
   } finally {
-    dispatch(endAPICall(apiIdentifier));
+    //dispatch(endAPICall(apiIdentifier));
+  }
+};
+
+/**
+ * Server Side Calling
+ * @param {*} pageObj
+ */
+const fetchNewsFromApi_NEW = async (pageObj) => {
+  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.nextPage : 0}`;
+  try {
+    const endpoint =
+      "https://hn.algolia.com/api/v1" +
+      CONFIG.API_ENDPOINTS.FETCH_FRONT_PAGE_NEWS;
+
+    const response = await ExternalBaseService.get(endpoint + searchQuery);
+
+    const { data, page } = normalizeNewsData(response.data.data);
+
+    return fetchFrontPageNewsSuccess(searchQuery, data, page);
+  } catch (error) {
+    return fetchFrontPageNewsFailure(searchQuery, error.message);
   }
 };
 
 /**
  * THUNK: fetch News data stored in local service
  */
-const fetchNewsFromLocalService = () => async (dispatch) => {
+const fetchNewsFromLocalService = () => {
   const localNewsDetails = InternalBaseService.get(
     CONFIG.LOCAL_STORAGE_KEYS.UPVOTES
   );
-  if (!isEmpty(localNewsDetails)) {
-    dispatch(fetchNewsFromLocalSvcSuccess(localNewsDetails));
-  }
+  debugger;
+  return localNewsDetails;
 };
 
 /**
  * THUNK: fetch Hidden News Items
  */
-const fetchHiddenNewsItems = () => async (dispatch) => {
+const fetchHiddenNewsItems = () => {
   const hiddenItems = InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN);
-  if (!isEmpty(hiddenItems)) {
-    dispatch(fetchHiddenNewsItemsSuccess(hiddenItems));
-  }
+  debugger;
+  return hiddenItems;
 };
 
 /**
@@ -101,11 +118,13 @@ const fetchHiddenNewsItems = () => async (dispatch) => {
 const upVote = (newsItemId, currentCount) => async (dispatch) => {
   const localNewsDetails =
     InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.UPVOTES) || {};
+  debugger;
+  localNewsDetails[newsItemId] = localNewsDetails[newsItemId] || {};
   localNewsDetails[newsItemId].points = currentCount + 1;
   if (
     InternalBaseService.put(CONFIG.LOCAL_STORAGE_KEYS.UPVOTES, localNewsDetails)
   ) {
-    fetchNewsFromLocalService()(dispatch);
+    dispatch(fetchNewsFromLocalSvcSuccess(fetchNewsFromLocalService()));
   }
 };
 
@@ -114,14 +133,15 @@ const upVote = (newsItemId, currentCount) => async (dispatch) => {
  * @param {*} newsItemId news item Identifier
  */
 const hideNewsItem = (newsItemId) => async (dispatch) => {
-  const localHiddenItems = InternalBaseService.get(
-    CONFIG.LOCAL_STORAGE_KEYS.HIDDEN
-  );
+  const localHiddenItems =
+    InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN) || {};
+  debugger;
   localHiddenItems[newsItemId] = moment();
   if (
     InternalBaseService.put(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN, localHiddenItems)
   ) {
-    fetchHiddenNewsItems()(dispatch);
+    debugger;
+    dispatch(fetchHiddenNewsItemsSuccess(localHiddenItems));
   }
 };
 
@@ -140,12 +160,25 @@ const fetchNews = (pageObj) => async (dispatch) => {
   // 1. Fetch Data From External Srvice
   //2. Fetch Data from Local Service
   // 3. Fetch Hidden Data
-  await Promise.all([
-    await fetchNewsFromApi(pageObj)(dispatch),
-    await fetchNewsFromLocalService()(dispatch),
-    await fetchHiddenNewsItems()(dispatch),
-  ]);
+  const { data: serviceData, page, searchQuery } = await fetchNewsFromApi(
+    pageObj
+  )(dispatch);
+  const localData = fetchNewsFromLocalService();
+  const hiddenData = fetchHiddenNewsItems();
+
+  each(keys(localData), (objectId) => {
+    const { points: localPointsCount } = localData[objectId];
+
+    if (
+      serviceData[objectId] &&
+      localPointsCount > serviceData[objectId].points
+    )
+      serviceData[objectId].points = localPointsCount; // replace local points only when external points > local Count
+  });
+  each(keys(hiddenData), ({ objectId }) => delete serviceData[objectId]);
+  dispatch(fetchFrontPageNewsSuccess(searchQuery, serviceData, page));
 };
+
 //#endregion
 
 export const actions = {
@@ -154,6 +187,7 @@ export const actions = {
   fetchHiddenNewsItems,
   upVote,
   hideNewsItem,
+  fetchNewsFromApi_NEW,
 };
 
 export const businessActions = {

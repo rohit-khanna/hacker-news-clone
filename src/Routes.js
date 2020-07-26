@@ -1,16 +1,15 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import Loadable from "react-loadable";
 
 const AppComponent = Loadable({
-  loader: () => import("./App"),
+  loader: () => import("./AppContainer"),
   loading: () => <div>loading...</div>,
 });
 
-export default function Routes() {
-  return (
-    <div>
-      <Route path="/" exact component={AppComponent} />
-    </div>
-  );
-}
+export default [
+  {
+    path: "/",
+    exact: true,
+    component: AppComponent,
+  },
+];

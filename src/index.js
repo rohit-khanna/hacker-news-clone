@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-//import App from "./App";
+import "./index.scss";
+import "./App.scss";
 import ConfigureStore from "./redux/configureStore";
+import { renderRoutes } from "react-router-config";
 
 import { Provider as ReduxProvider } from "react-redux";
 import InitialState from "./redux/reducers/initialState";
@@ -16,7 +17,7 @@ const store = new ConfigureStore(serverState || InitialState);
 ReactDOM.hydrate(
   <ReduxProvider store={store}>
     <BrowserRouter>
-      <Routes />
+      <div>{renderRoutes(Routes)}</div>
     </BrowserRouter>
   </ReduxProvider>,
   document.getElementById("root")

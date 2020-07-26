@@ -6,7 +6,7 @@ export default function ConfigureStore(initialState) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add suport for redux dev tools
 
-  const isProductionEnvironment = process.env.NODE_ENV === "production";
+  const isProductionEnvironment = process.env.NODE_ENV === "production_____";
 
   const middlewares = [thunk];
 

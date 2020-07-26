@@ -5,7 +5,7 @@ import {
   FETCH_LOCAL_NEWS_SUCCESS,
   FETCH_HIDDEN_ITEMS_SUCCESS,
 } from "../actions/actionTypes";
-import { keys, values, each, filter, includes } from "lodash";
+import { keys, each } from "lodash";
 
 const STATE_SLICE_NAME = "newsResult";
 
@@ -31,22 +31,29 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
       return currentState;
     }
     case FETCH_LOCAL_NEWS_SUCCESS: {
+      debugger;
       const currentState = { ...state };
+      const currentDataObj = { ...currentState.data };
       const { data } = action;
       each(keys(data), (objectId) => {
         const { points: localPointsCount } = data[objectId];
-        if (localPointsCount > currentState.data.points)
-          currentState.data.points = localPointsCount; // replace local points only when external points > local Count
+        if (
+          currentDataObj[objectId] &&
+          localPointsCount > currentDataObj[objectId].points
+        )
+          currentDataObj[objectId].points = localPointsCount; // replace local points only when external points > local Count
       });
+      currentState.data = currentDataObj;
       return currentState;
     }
 
     case FETCH_HIDDEN_ITEMS_SUCCESS: {
       const currentState = { ...state };
+      const currentDataObj = { ...currentState.data };
       const { data } = action;
-      return filter(values(currentState.data), ({ objectId }) =>
-        includes(keys(data), objectId)
-      );
+      each(keys(data), (key) => delete currentDataObj[key]);
+      currentState.data = currentDataObj;
+      return currentState;
     }
 
     default:
@@ -59,6 +66,5 @@ export const selectors = {
     appState[STATE_SLICE_NAME] && appState[STATE_SLICE_NAME].error,
   getQuery: (appState) =>
     appState[STATE_SLICE_NAME] && appState[STATE_SLICE_NAME].query,
-  getResult: (appState) =>
-    appState[STATE_SLICE_NAME] && appState[STATE_SLICE_NAME].data,
+  getResult: (appState) => appState[STATE_SLICE_NAME],
 };

@@ -1,32 +1,38 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter, matchPath } from "react-router-dom";
+import { StaticRouter } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-
+//import data from "../testData";
 import ConfigureStore from "./middleware/configureStore";
+import actions from "../redux/actions";
 import Routes from "../Routes";
+import { renderRoutes } from "react-router-config";
 const fs = require("fs");
 const path = require("path");
 
-var routes = ["/"];
+export default async function serverRenderer(req, res) {
+  // var match = routes.find((route) =>
+  //   matchPath(req.path, {
+  //     path: route,
+  //     exact: true,
+  //   })
+  // );
 
-export default function serverRenderer(req, res) {
-  var match = routes.find((route) =>
-    matchPath(req.path, {
-      path: route,
-      exact: true,
-    })
-  );
+  //const matchingComponents = matchRoutes(Routes, req.path);
 
   const store = new ConfigureStore();
+
+  const ss = await actions.newsSearchActions.fetchNewsFromApi_NEW({});
+
+  store.dispatch(ss);
   const html = ReactDOMServer.renderToString(
     <ReduxProvider store={store}>
       <StaticRouter context={{}} location={req.path}>
-        <Routes />
+        <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </ReduxProvider>
   );
-
+  //console.log(store.getState());
   const filePath = path.resolve(__dirname, "..", "..", "build", "index.html");
 
   fs.readFile(filePath, "utf8", (err, htmlData) => {
