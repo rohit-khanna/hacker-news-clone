@@ -56,7 +56,7 @@
     "dev": " npm-run-all  \"dev:*\" ",
     "dev:start-client": "react-scripts build",
     "dev:build-server": " nodemon --watch src/server --exec node src//server//bootstrap.js",
-    "start": "serve -s build",
+    "start": "node src//server//bootstrap.js",
     "build": "react-scripts build",
     "heroku-postbuild": "yarn build"
   },
