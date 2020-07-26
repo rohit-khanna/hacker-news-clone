@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import DataGrid from "./components/dataGrid";
-import { isEmpty } from "lodash";
+//import { isEmpty } from "lodash";
 import "./App.scss";
 import LineChart from "./components/charts/lineChart";
 import { convertNewsDataToChartCoordinates } from "./utils";
