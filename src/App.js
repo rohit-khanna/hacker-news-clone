@@ -15,7 +15,7 @@ function App({ actions, newsData, val }) {
       <DataGrid data={data.hits} actions={actions || {}} />
       <hr />
       <div>Value:{val}</div>
-      {/* <LineChart data={convertNewsDataToChartCoordinates(data.hits)} /> */}
+      <LineChart data={convertNewsDataToChartCoordinates(data.hits)} />
     </main>
   );
 }

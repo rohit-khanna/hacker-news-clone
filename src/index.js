@@ -7,7 +7,7 @@ import ConfigureStore from "./redux/configureStore";
 import { Provider as ReduxProvider } from "react-redux";
 import InitialState from "./redux/reducers/initialState";
 import "./config/config-axios";
-import { BrowserRouter } from "react-router-dom";
+//import { BrowserRouter } from "react-router-dom";
 
 const serverState = window.__PRELOADED_STATE__;
 const store = new ConfigureStore(serverState || InitialState);

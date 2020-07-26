@@ -4,7 +4,7 @@ import { Provider as ReduxProvider } from "react-redux";
 // we'll talk about this in a minute:
 //import serverRenderer from "./middleware/renderer";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
+//import { StaticRouter } from "react-router-dom";
 import App from "../App";
 import React from "react";
 import ConfigureStore from "./middleware/configureStore";
@@ -18,7 +18,7 @@ app.use(express.static(path.resolve(__dirname, "..", "..", "build")));
 app.use(express.static(path.resolve(__dirname, "..", "..", "public")));
 
 app.get("/*", (req, res) => {
-  console.log("adasdasd");
+  console.log("Calling route....");
   const store = new ConfigureStore();
   const html = ReactDOMServer.renderToString(
     <ReduxProvider store={store}>
@@ -27,7 +27,6 @@ app.get("/*", (req, res) => {
   );
 
   const filePath = path.resolve(__dirname, "..", "..", "build", "index.html");
-  console.log(filePath);
 
   fs.readFile(filePath, "utf8", (err, htmlData) => {
     res.end(
