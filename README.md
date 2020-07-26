@@ -2,9 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## [See Demo](https://rk-hacker-news-clone.herokuapp.com/)
-
----
+### [See Demo](https://rk-hacker-news-clone.herokuapp.com/)
 
 ## Technology Stack
 
@@ -30,8 +28,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Data: https://hn.algolia.com/api
 
 ### CI-CD Pipeline : [Travis CI](https://travis-ci.com/github/rohit-khanna)
-
----
 
 ## Application Flow
 

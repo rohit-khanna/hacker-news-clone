@@ -1,18 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import AppContainer from "./AppContainer";
+import App from "./App";
 import ConfigureStore from "./redux/configureStore";
+
 import { Provider as ReduxProvider } from "react-redux";
 import InitialState from "./redux/reducers/initialState";
 import "./config/config-axios";
+import { BrowserRouter } from "react-router-dom";
 
-const store = new ConfigureStore(InitialState);
+const serverState = window.__PRELOADED_STATE__;
+const store = new ConfigureStore(serverState || InitialState);
 
-ReactDOM.render(
+ReactDOM.hydrate(
+  // <BrowserRouter>
   <ReduxProvider store={store}>
-    <AppContainer />
+    <App val="1" />,
   </ReduxProvider>,
-
+  // </BrowserRouter>,
   document.getElementById("root")
 );
