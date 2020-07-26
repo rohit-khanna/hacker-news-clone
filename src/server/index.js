@@ -17,7 +17,7 @@ console.log(__dirname);
 app.use(express.static(path.resolve(__dirname, "..", "..", "build")));
 app.use(express.static(path.resolve(__dirname, "..", "..", "public")));
 
-app.get("/*", (req, res) => {
+app.get("*", (req, res) => {
   console.log("Calling route....");
   const store = new ConfigureStore();
   const html = ReactDOMServer.renderToString(
