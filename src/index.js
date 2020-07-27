@@ -9,6 +9,7 @@ import { Provider as ReduxProvider } from "react-redux";
 import InitialState from "./redux/reducers/initialState";
 import "./config/config-axios";
 import { BrowserRouter } from "react-router-dom";
+
 import Routes from "./Routes";
 
 const serverState = window.__PRELOADED_STATE__;

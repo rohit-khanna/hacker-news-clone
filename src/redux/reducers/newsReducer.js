@@ -68,4 +68,5 @@ export const selectors = {
     appState[STATE_SLICE_NAME] && appState[STATE_SLICE_NAME].query,
   getResult: (appState) => appState[STATE_SLICE_NAME],
   getSyncUprequired: (appState) => appState[STATE_SLICE_NAME].syncUpRequired,
+  getPaginationDetails: (appState) => appState[STATE_SLICE_NAME].page,
 };

@@ -58,7 +58,7 @@ export const fetchHiddenNewsItemsSuccess = (data) => {
  */
 const fetchNewsFromApi = (pageObj) => async (dispatch) => {
   //const apiIdentifier = API_CALL_IDENTIFIERS.FRONT_PAGE_NEWS_SEARCH;
-  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.nextPage : 0}`;
+  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.page : 0}`;
   try {
     //  dispatch(beginAPICall(apiIdentifier));
 
@@ -103,7 +103,7 @@ const syncNewsWithLocal = (newsDataSrviceData, searchQuery, page) => async (
  * @param {*} pageObj
  */
 const fetchNewsFromApi_NEW = async (pageObj) => {
-  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.nextPage : 0}`;
+  const searchQuery = `&page=${!isEmpty(pageObj) ? pageObj.page : 0}`;
   try {
     const endpoint =
       "https://hn.algolia.com/api/v1" +

@@ -28,6 +28,7 @@ function mapStateToProps(state, ownProps) {
   return {
     newsData: selectors.newsSelectors.getResult(state).data,
     syncUprequired: selectors.newsSelectors.getSyncUprequired(state),
+    pageDetails: selectors.newsSelectors.getPaginationDetails(state),
     ...ownProps,
   };
 }

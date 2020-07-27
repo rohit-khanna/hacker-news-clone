@@ -7,13 +7,16 @@ import ConfigureStore from "./configureStore";
 import actions from "../../redux/actions";
 import Routes from "../../Routes";
 import { renderRoutes } from "react-router-config";
+import { getQueryParams } from "../../utils";
 const fs = require("fs");
 const path = require("path");
 
 export default async function serverRenderer(req, res) {
   const store = new ConfigureStore();
 
-  const ss = await actions.newsSearchActions.fetchNewsFromApi_NEW({});
+  const pageObj = getQueryParams(req.originalUrl.replace("/", ""));
+
+  const ss = await actions.newsSearchActions.fetchNewsFromApi_NEW(pageObj);
 
   store.dispatch(ss);
   const html = ReactDOMServer.renderToString(

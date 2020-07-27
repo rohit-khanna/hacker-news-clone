@@ -1,5 +1,6 @@
 import moment from "moment";
 import { isEmpty, map, orderBy, each } from "lodash";
+import queryString from "query-string";
 
 /**
  * get hostname from the Url String
@@ -57,7 +58,7 @@ export const normalizeNewsData = (responseData) => {
   if (isEmpty(responseData)) return result;
 
   const { hits, page, nbPages, hitsPerPage } = responseData;
-  const pageMultipler = page * 10;
+  const pageMultipler = page * hitsPerPage;
 
   each(hits, ({ objectID, ...restKey }, idx) => {
     result.data[objectID] = result.data[objectID] || {};
@@ -72,3 +73,6 @@ export const normalizeNewsData = (responseData) => {
 
   return result;
 };
+
+export const getQueryParams = (locationSearch) =>
+  queryString.parse(locationSearch);

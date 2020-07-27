@@ -12,4 +12,16 @@ export default [
     exact: true,
     component: AppComponent,
   },
+  {
+    path: "*",
+    // eslint-disable-next-line react/no-multi-comp
+    component: () => {
+      return (
+        <>
+          <h2>404</h2>
+          <h4>Page Not found</h4>
+        </>
+      );
+    },
+  },
 ];

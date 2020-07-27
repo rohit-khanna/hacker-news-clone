@@ -1,10 +1,16 @@
 import React from "react";
 import "./DataGrid.scss";
-import { map, orderBy } from "lodash";
+import { map, orderBy, isEmpty } from "lodash";
 import DataRow from "../dataRow";
 import Pagination from "../pagination";
 
-export default function DataGrid({ data, actions: { upvote, hideNewsItem } }) {
+export default function DataGrid({
+  data,
+  actions: { upvote, hideNewsItem },
+  handleNextButtonClick,
+  handlePrevButtonClick,
+  pageDetails,
+}) {
   const handleUpVote = (objectId, currentCount) => {
     upvote(objectId, currentCount);
   };
@@ -30,42 +36,60 @@ export default function DataGrid({ data, actions: { upvote, hideNewsItem } }) {
         </tr>
       </thead>
       <tbody>
-        {map(
-          orderBy(data, "sno"),
-          (
-            {
-              title,
-              url,
-              author,
-              objectID,
-              created_at,
-              num_comments,
-              points,
-              sno,
-            },
-            idx
-          ) => (
-            <DataRow
-              sNo={sno}
-              key={objectID}
-              title={title}
-              url={url}
-              author={author}
-              id={objectID}
-              createdDate={created_at}
-              commentsCount={num_comments}
-              voteCount={points}
-              isOddRow={idx % 2 === 1}
-              onUpVote={handleUpVote}
-              OnHide={handleHideNews}
-            />
+        {data && !isEmpty(data) ? (
+          map(
+            orderBy(data, "sno"),
+            (
+              {
+                title,
+                url,
+                author,
+                objectID,
+                created_at,
+                num_comments,
+                points,
+                sno,
+              },
+              idx
+            ) => (
+              <DataRow
+                sNo={sno}
+                key={objectID}
+                title={title}
+                url={url}
+                author={author}
+                id={objectID}
+                createdDate={created_at}
+                commentsCount={num_comments}
+                voteCount={points}
+                isOddRow={idx % 2 === 1}
+                onUpVote={handleUpVote}
+                OnHide={handleHideNews}
+              />
+            )
           )
+        ) : (
+          <tr>
+            <td colSpan="5" className="text-align-center pt-1 ">
+              {" "}
+              No Data found
+            </td>
+          </tr>
         )}
       </tbody>
       <tfoot>
         <tr>
           <td colSpan="5">
-            <Pagination />
+            {data && !isEmpty(data) ? (
+              <Pagination
+                onNextCLick={handleNextButtonClick}
+                onPrevClick={handlePrevButtonClick}
+                currentPage={pageDetails ? pageDetails.currentPage : 0}
+                totalPageCount={pageDetails ? pageDetails.totalPages : 0}
+              />
+            ) : (
+              ""
+            )}
           </td>
         </tr>
       </tfoot>
