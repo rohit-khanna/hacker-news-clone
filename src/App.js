@@ -25,7 +25,7 @@ function App({ actions, newsData, pageDetails, syncUprequired, history }) {
       // it is not initial App load and search queries are not null
       actions.fetchNews(getQueryParams(history.location.search));
     }
-  }, [history.location.search, initialLoad]);
+  }, [history.location.search, initialLoad, actions]);
 
   const handlePrevButtonClick = () => {
     const { currentPage } = pageDetails;
