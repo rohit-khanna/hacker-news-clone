@@ -1,5 +1,9 @@
-import { actions as newsSearchActions } from "./newsActions";
+import {
+  actions as newsSearchActions,
+  businessActions as newsBusinessActions,
+} from "./newsActions";
 
 export default {
   newsSearchActions,
+  newsBusinessActions,
 };

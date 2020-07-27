@@ -27,11 +27,13 @@ describe("Utils", () => {
           points: 430,
           num_comments: 201,
           objectID: "222",
+          sno: 1,
         },
         "111": {
           points: 8,
           num_comments: 21,
           objectID: "111",
+          sno: 2,
         },
       },
       page: {
