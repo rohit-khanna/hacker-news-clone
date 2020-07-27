@@ -66,3 +66,7 @@ When `hideItem()` is invoked, the localServiceAPI is updated with new list of Hi
 5. Once SYnc is done,new data is savd into `client redux store` and the same is used by Grid and Chart.
 6. On `Prev` or `Next` click, API call is triggered from `Client` to refetch the desired result, than requesting `server rendered page` again from Express Server.
 7. On `UpVote` and `Hide`, the Changes are saved with the help of `local Service API/ localstorage Service` and the same will be available during future `SYNC` process.
+
+##Scren Print
+
+![Screen Print Desktop](./extra/screenshot-desktop)
