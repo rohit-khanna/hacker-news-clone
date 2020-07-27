@@ -46,7 +46,7 @@ export const removeFromLocalStorage = (key) => {
 };
 
 export const convertNewsDataToChartCoordinates = (newsData) => {
-  return map(orderBy(newsData, "sno"), ({ objectID, sno, points }) => ({
+  return map(orderBy(newsData, "sno"), ({ sno, points }) => ({
     x: sno,
     y: points,
   }));

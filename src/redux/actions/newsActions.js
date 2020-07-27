@@ -13,12 +13,18 @@ import moment from "moment";
 import { normalizeNewsData } from "../../utils";
 
 //#region Action Creators
-export const fetchFrontPageNewsSuccess = (searchParams, data, page) => {
+export const fetchFrontPageNewsSuccess = (
+  searchParams,
+  data,
+  page,
+  syncUpRequired
+) => {
   return {
     type: FETCH_FRONT_PAGE_NEWS_SUCCESS,
     query: searchParams,
     data,
     page,
+    syncUpRequired,
   };
 };
 
@@ -45,7 +51,7 @@ export const fetchHiddenNewsItemsSuccess = (data) => {
 };
 //#endregion
 
-//#region thunk
+//#region
 /**
  * THUNK: to fetch the Front Page News: Client Side Calling
  * @param {*} pageObj page Object
@@ -70,6 +76,29 @@ const fetchNewsFromApi = (pageObj) => async (dispatch) => {
 };
 
 /**
+ * Assuming, Service Data has been already fetched and stored in Redux
+ */
+const syncNewsWithLocal = (newsDataSrviceData, searchQuery, page) => async (
+  dispatch
+) => {
+  const serviceData = { ...newsDataSrviceData };
+  const localData = fetchNewsFromLocalService();
+  const hiddenData = fetchHiddenNewsItems();
+
+  each(keys(localData), (objectId) => {
+    const { points: localPointsCount } = localData[objectId];
+
+    if (
+      serviceData[objectId] &&
+      localPointsCount > serviceData[objectId].points
+    )
+      serviceData[objectId].points = localPointsCount; // replace local points only when external points > local Count
+  });
+  each(keys(hiddenData), (key) => delete serviceData[key]);
+  dispatch(fetchFrontPageNewsSuccess(searchQuery, serviceData, page, false));
+};
+
+/**
  * Server Side Calling
  * @param {*} pageObj
  */
@@ -84,7 +113,7 @@ const fetchNewsFromApi_NEW = async (pageObj) => {
 
     const { data, page } = normalizeNewsData(response.data.data);
 
-    return fetchFrontPageNewsSuccess(searchQuery, data, page);
+    return fetchFrontPageNewsSuccess(searchQuery, data, page, true);
   } catch (error) {
     return fetchFrontPageNewsFailure(searchQuery, error.message);
   }
@@ -97,8 +126,7 @@ const fetchNewsFromLocalService = () => {
   const localNewsDetails = InternalBaseService.get(
     CONFIG.LOCAL_STORAGE_KEYS.UPVOTES
   );
-  debugger;
-  return localNewsDetails;
+  return localNewsDetails || {};
 };
 
 /**
@@ -106,8 +134,7 @@ const fetchNewsFromLocalService = () => {
  */
 const fetchHiddenNewsItems = () => {
   const hiddenItems = InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN);
-  debugger;
-  return hiddenItems;
+  return hiddenItems || {};
 };
 
 /**
@@ -118,7 +145,6 @@ const fetchHiddenNewsItems = () => {
 const upVote = (newsItemId, currentCount) => async (dispatch) => {
   const localNewsDetails =
     InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.UPVOTES) || {};
-  debugger;
   localNewsDetails[newsItemId] = localNewsDetails[newsItemId] || {};
   localNewsDetails[newsItemId].points = currentCount + 1;
   if (
@@ -135,12 +161,10 @@ const upVote = (newsItemId, currentCount) => async (dispatch) => {
 const hideNewsItem = (newsItemId) => async (dispatch) => {
   const localHiddenItems =
     InternalBaseService.get(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN) || {};
-  debugger;
   localHiddenItems[newsItemId] = moment();
   if (
     InternalBaseService.put(CONFIG.LOCAL_STORAGE_KEYS.HIDDEN, localHiddenItems)
   ) {
-    debugger;
     dispatch(fetchHiddenNewsItemsSuccess(localHiddenItems));
   }
 };
@@ -163,20 +187,8 @@ const fetchNews = (pageObj) => async (dispatch) => {
   const { data: serviceData, page, searchQuery } = await fetchNewsFromApi(
     pageObj
   )(dispatch);
-  const localData = fetchNewsFromLocalService();
-  const hiddenData = fetchHiddenNewsItems();
 
-  each(keys(localData), (objectId) => {
-    const { points: localPointsCount } = localData[objectId];
-
-    if (
-      serviceData[objectId] &&
-      localPointsCount > serviceData[objectId].points
-    )
-      serviceData[objectId].points = localPointsCount; // replace local points only when external points > local Count
-  });
-  each(keys(hiddenData), ({ objectId }) => delete serviceData[objectId]);
-  dispatch(fetchFrontPageNewsSuccess(searchQuery, serviceData, page));
+  syncNewsWithLocal(serviceData, searchQuery, page)(dispatch);
 };
 
 //#endregion
@@ -185,6 +197,7 @@ export const actions = {
   fetchNewsFromApi,
   fetchNewsFromLocalService,
   fetchHiddenNewsItems,
+  syncNewsWithLocal,
   upVote,
   hideNewsItem,
   fetchNewsFromApi_NEW,

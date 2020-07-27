@@ -1,5 +1,5 @@
 import express from "express";
-import serverRenderer from "./serverRenderer";
+import serverRenderer from "./middleware/serverRenderer";
 import Loadable from "react-loadable";
 
 const path = require("path");
@@ -21,9 +21,11 @@ app.use(router);
 Loadable.preloadAll().then(() => {
   app.listen(PORT, (error) => {
     if (error) {
+      // eslint-disable-next-line no-console
       return console.log("something bad happened", error);
     }
 
+    // eslint-disable-next-line no-console
     console.log("listening on " + PORT + "...");
   });
 });

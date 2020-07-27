@@ -16,6 +16,10 @@ function mapDispatchToProps(dispatch) {
         actions.newsSearchActions.hideNewsItem,
         dispatch
       ),
+      syncUpData: bindActionCreators(
+        actions.newsSearchActions.syncNewsWithLocal,
+        dispatch
+      ),
     },
   };
 }
@@ -23,6 +27,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state, ownProps) {
   return {
     newsData: selectors.newsSelectors.getResult(state).data,
+    syncUprequired: selectors.newsSelectors.getSyncUprequired(state),
+    ...ownProps,
   };
 }
 

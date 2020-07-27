@@ -13,11 +13,12 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
   switch (action.type) {
     case FETCH_FRONT_PAGE_NEWS_SUCCESS: {
       const currentState = { ...state };
-      const { query, data, page } = action;
+      const { query, data, page, syncUpRequired } = action;
       currentState.error = "";
       currentState.data = data; // data is normalized Data with key as objID
-      currentState.query = query;
-      currentState.page = page;
+      if (query) currentState.query = query;
+      if (page) currentState.page = page;
+      currentState.syncUpRequired = syncUpRequired;
       return currentState;
     }
     case FETCH_FRONT_PAGE_NEWS_FAILURE: {
@@ -31,7 +32,6 @@ export const newsReducer = (state = InitialState[STATE_SLICE_NAME], action) => {
       return currentState;
     }
     case FETCH_LOCAL_NEWS_SUCCESS: {
-      debugger;
       const currentState = { ...state };
       const currentDataObj = { ...currentState.data };
       const { data } = action;
@@ -67,4 +67,5 @@ export const selectors = {
   getQuery: (appState) =>
     appState[STATE_SLICE_NAME] && appState[STATE_SLICE_NAME].query,
   getResult: (appState) => appState[STATE_SLICE_NAME],
+  getSyncUprequired: (appState) => appState[STATE_SLICE_NAME].syncUpRequired,
 };

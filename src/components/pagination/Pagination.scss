@@ -5,4 +5,9 @@
   color: $primaryColor;
   font-weight: 500;
   text-align: right;
+
+  .disabled {
+    color: #f39e65;
+    pointer-events: none;
+  }
 }

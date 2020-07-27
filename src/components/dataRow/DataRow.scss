@@ -22,13 +22,12 @@
       width: 3% !important;
       text-align: center;
     }
-    &-2 {
+    &-2,
+    &-3 {
       width: 4.5% !important;
       text-align: center;
     }
-    &-3 {
-      width: 18.75% !important;
-    }
+
     &-4 {
       width: 25% !important;
     }
@@ -45,8 +44,17 @@
   .mobileActionArea {
     justify-content: space-evenly;
     align-items: center;
-    .id {
+    padding: 0.5rem 0;
+    .upvote {
+      font-size: 0.6rem;
       color: gray;
+      letter-spacing: 0;
+      font-weight: normal;
+      text-decoration: underline;
+      text-transform: none;
+    }
+    .id {
+      color: rgb(204, 197, 197);
       font-size: 0.5rem;
       span {
         color: inherit;

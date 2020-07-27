@@ -19,7 +19,7 @@ export default function DataGrid({ data, actions: { upvote, hideNewsItem } }) {
         <tr>
           <th className="col-1">#</th>
           <th className="col-2">Comments</th>
-          <th className="col-2">Vote Count</th>
+          <th className="col-3">Vote #</th>
           <th className="col-1">Upvote</th>
           <th colSpan="2" className="col-12">
             News Details

@@ -10,7 +10,6 @@ export default function NewsMetadata({
   createdDate,
   title,
   OnHide,
-  hideButtonVisible = true,
 }) {
   return (
     <div className="newsMetadataContainer">

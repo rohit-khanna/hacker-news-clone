@@ -1,24 +1,25 @@
 import React, { useEffect } from "react";
 import DataGrid from "./components/dataGrid";
-//import { isEmpty } from "lodash";
+
 import "./App.scss";
 import LineChart from "./components/charts/lineChart";
 import { convertNewsDataToChartCoordinates } from "./utils";
+import { isEmpty } from "lodash";
+//import data from "./testData";
 
-function App({ actions, newsData, val }) {
+function App({ actions, newsData, syncUprequired }) {
   useEffect(() => {
-    //  if (isEmpty(newsData)) actions.fetchNews({ nextPage: 0 });
-  }, []);
+    if (!isEmpty(newsData) && syncUprequired) actions.syncUpData(newsData);
+  }, [actions, newsData, syncUprequired]);
 
   useEffect(() => {
-    console.log("updated");
-  }, [newsData]);
-  debugger;
+    actions.fetchNews();
+  }, [actions]);
+
   return (
     <main className="mainContainer">
       <DataGrid data={newsData} actions={actions || {}} />
       <hr />
-
       <LineChart data={convertNewsDataToChartCoordinates(newsData)} />
     </main>
   );
